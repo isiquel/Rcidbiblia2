@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>RCID BIBLE | PRO</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -10,38 +11,39 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg-dark); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
-        /* BOTÃO MESTRE VOLTAR - PRIORIDADE MÁXIMA APK */
+        /* BOTÃO MESTRE - ESTE É O SEGREDO DO APK */
         .btn-apk-home { 
             position: fixed; bottom: 25px; right: 20px; width: 65px; height: 65px; 
             background: linear-gradient(135deg, var(--gold), var(--gold-light)); 
             color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-weight: 800; font-size: 10px; z-index: 1000000; border: 3px solid #000; 
-            text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.6); cursor: pointer;
+            font-weight: 900; font-size: 10px; z-index: 1000000; border: 3px solid #000; 
+            text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.8); cursor: pointer; line-height: 1.1;
         }
 
-        .nav-header { background: #0f1014; border-bottom: 1px solid var(--glass); padding: 12px 5px; z-index: 1000; }
-        .nav-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 1000px; margin: 0 auto; }
-        .tab-btn { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 12px 1px; border-radius: 10px; font-size: 8px; font-weight: 600; text-transform: uppercase; text-align: center; cursor: pointer; border: none; }
+        .nav-header { background: #0f1014; border-bottom: 1px solid var(--glass); padding: 10px 5px; z-index: 1000; }
+        .nav-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; max-width: 1000px; margin: 0 auto; }
+        .tab-btn { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 12px 1px; border-radius: 8px; font-size: 8px; font-weight: 600; text-transform: uppercase; text-align: center; cursor: pointer; }
         .tab-btn.active { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #000; }
 
         .content-wrapper { flex: 1; position: relative; overflow: hidden; }
-        .view-section { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; flex-direction: column; padding: 18px; overflow-y: auto; }
+        .view-section { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; flex-direction: column; padding: 15px; overflow-y: auto; }
         .view-section.active { display: flex; }
 
-        .card { background: var(--glass); padding: 25px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); width: 100%; backdrop-filter: blur(12px); margin-bottom: 15px; }
-        .action-btn { background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; padding: 16px; border-radius: 16px; font-weight: bold; color: #000; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 14px; }
+        .card { background: var(--glass); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); width: 100%; margin-bottom: 15px; backdrop-filter: blur(10px); }
+        .action-btn { background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; padding: 15px; border-radius: 12px; font-weight: bold; color: #000; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 13px; }
         
         .toolbar { display: flex; gap: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; }
-        .tool-btn { background: #333; color: var(--gold); border: 1px solid var(--gold); padding: 8px 22px; border-radius: 8px; font-weight: 800; cursor: pointer; }
-        .tool-btn.active { background: var(--gold) !important; color: #000 !important; box-shadow: 0 0 15px var(--gold); }
-        #sermon-editor { width: 100%; min-height: 280px; background: #15161a; color: white; border: 1px solid var(--glass); border-radius: 18px; padding: 18px; font-size: 16px; outline: none; border-left: 5px solid var(--gold); overflow-y: auto; }
+        .tool-btn { background: #333; color: var(--gold); border: 1px solid var(--gold); padding: 10px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; }
+        .tool-btn.active { background: var(--gold) !important; color: #000 !important; box-shadow: 0 0 10px var(--gold); }
+        
+        #sermon-editor { width: 100%; min-height: 250px; background: #15161a; color: white; border: 1px solid var(--glass); border-radius: 15px; padding: 15px; font-size: 16px; outline: none; border-left: 5px solid var(--gold); overflow-y: auto; text-align: left; }
 
-        iframe { width: 100%; height: 100%; border: none; background: white; border-radius: 15px; }
+        iframe { width: 100%; height: 100%; border: none; background: white; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="btn-apk-home" onclick="switchView('home', document.querySelectorAll('.tab-btn')[0])">INÍCIO<br>APP</div>
+    <div class="btn-apk-home" onclick="location.reload();">INÍCIO<br>APP</div>
 
     <header class="nav-header">
         <div class="nav-tabs">
@@ -56,15 +58,15 @@
     <main class="content-wrapper">
         <section id="view-home" class="view-section active">
             <div class="card" style="text-align:center;">
-                <h2 style="color:var(--gold); font-weight:800; font-size: 26px;">RCID BIBLE PRO</h2>
-                <button class="action-btn" style="margin-top:20px;" onclick="switchView('leitura', document.querySelectorAll('.tab-btn')[1])">📖 ABRIR BÍBLIA ONLINE</button>
+                <h2 style="color:var(--gold); font-weight:800;">RCID BIBLE PRO</h2>
+                <button class="action-btn" style="margin-top:15px;" onclick="switchView('leitura', document.querySelectorAll('.tab-btn')[1])">📖 ABRIR BÍBLIA</button>
             </div>
             <div class="card" style="text-align:center;">
                 <button class="action-btn" style="background:#28a745; color:white;" onclick="switchView('agenda', document.querySelectorAll('.tab-btn')[0])">📅 MINHA AGENDA</button>
             </div>
             <div class="card" style="border:1px dashed var(--gold); text-align:center;">
                 <button class="action-btn" style="background:#009ee3; color:white;" onclick="window.open('https://mpago.la/126sWfx', '_blank')">🤝 OFERTAR</button>
-                <p style="font-size:12px; color:#aaa; margin-top:10px; font-style:italic;">"Este projeto é gratuito. Se desejar apoiar, clique acima para uma oferta voluntária."</p>
+                <p style="font-size:11px; color:#aaa; margin-top:10px; font-style:italic;">"Projeto grátis. Se sentir no coração o desejo de apoiar, sua oferta é bem-vinda."</p>
             </div>
         </section>
 
@@ -77,43 +79,44 @@
             <div id="agenda-list"></div>
         </section>
 
-        <section id="view-leitura" class="view-section" style="padding:5px;"><iframe src="https://www.bibliaonline.com.br/acf/"></iframe></section>
+        <section id="view-leitura" class="view-section" style="padding:0;">
+            <iframe src="https://www.bibliaonline.com.br/acf/"></iframe>
+        </section>
 
         <section id="view-esboços" class="view-section">
             <div class="card">
-                <input type="text" id="sermon-title" style="width:100%; background:#15161a; color:var(--gold); border:1px solid var(--glass); padding:15px; border-radius:12px; margin-bottom:12px;" placeholder="Título do Esboço">
+                <input type="text" id="sermon-title" style="width:100%; background:#15161a; color:var(--gold); border:1px solid var(--glass); padding:15px; border-radius:12px; margin-bottom:10px;" placeholder="Título">
                 <div class="toolbar">
                     <button id="btn-bold" class="tool-btn" onclick="execCmd('bold')">B</button>
                     <button id="btn-italic" class="tool-btn" style="font-style:italic;" onclick="execCmd('italic')">I</button>
                 </div>
                 <div id="sermon-editor" contenteditable="true" oninput="checkStyles()" onclick="checkStyles()"></div>
-                <button class="action-btn" style="margin-top:15px;" onclick="saveSermon()">SALVAR ESBOÇO</button>
+                <button class="action-btn" style="margin-top:10px;" onclick="saveSermon()">SALVAR</button>
             </div>
             <div id="saved-list"></div>
         </section>
 
         <section id="view-estudos" class="view-section">
-            <div class="card" style="text-align:center;">
-                <h3 style="color:var(--gold); margin-bottom:15px;">Pesquisar no CACP</h3>
-                <input type="text" id="inputSeita" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:15px; border-radius:12px; margin-bottom:12px;" placeholder="Pesquisar seita...">
-                <button class="action-btn" onclick="window.open('https://www.cacp.app.br/?s=' + document.getElementById('inputSeita').value, '_blank')">🔍 BUSCAR NO CACP</button>
+            <div class="card" style="margin-top:10px;">
+                <input type="text" id="inputSeita" style="width:100%; padding:15px; border-radius:12px; background:#15161a; color:white; border:1px solid var(--gold);" placeholder="Pesquisar seita...">
+                <button class="action-btn" style="margin-top:10px;" onclick="window.location.href='https://www.cacp.app.br/?s=' + document.getElementById('inputSeita').value">🔍 BUSCAR NO CACP</button>
             </div>
         </section>
 
         <section id="view-materiais" class="view-section">
             <div class="card">
-                <h3 style="color:var(--gold); margin-bottom:15px; text-align:center;">História da Igreja</h3>
-                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="window.open('https://drive.google.com/uc?id=1ukE1_cJNNSKFI4VBiwCdLesm6oRT3weu&export=download', '_blank')">📖 Volume 1</button>
-                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="window.open('https://drive.google.com/uc?id=1WnHrDLZ6ZKKmVidTwuzZ_HPOroEup0Us&export=download', '_blank')">📖 Volume 2</button>
-                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="window.open('https://drive.google.com/uc?id=1AvZtXGybmuEvqHUdtCuhnPzxbRyanDfe&export=download', '_blank')">📖 Volume 3</button>
-                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="window.open('https://drive.google.com/uc?id=18-r2qE1eDnF_Rh7CfrYoFSqG4RgQhUMM&export=download', '_blank')">📖 Volume 4</button>
-                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="window.open('https://drive.google.com/uc?id=1UriFN9nzlOH29TSawHyXpvDu3Bb4gYhY&export=download', '_blank')">📖 Volume 5</button>
-                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="window.open('https://drive.google.com/uc?id=1OWCuZLG_bf5kdivV_7vBAU5lshPtkWEX&export=download', '_blank')">📖 Volume 6</button>
-                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="window.open('https://drive.google.com/uc?id=172-WF-dXVokihZE1Sgcj4-1DRO5CjHiI&export=download', '_blank')">📖 Volume 7</button>
+                <h3 style="color:var(--gold); margin-bottom:10px; text-align:center;">História da Igreja (7 Vols)</h3>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="openPDF('1ukE1_cJNNSKFI4VBiwCdLesm6oRT3weu')">📖 Volume 1</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="openPDF('1WnHrDLZ6ZKKmVidTwuzZ_HPOroEup0Us')">📖 Volume 2</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="openPDF('1AvZtXGybmuEvqHUdtCuhnPzxbRyanDfe')">📖 Volume 3</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="openPDF('18-r2qE1eDnF_Rh7CfrYoFSqG4RgQhUMM')">📖 Volume 4</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="openPDF('1UriFN9nzlOH29TSawHyXpvDu3Bb4gYhY')">📖 Volume 5</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="openPDF('1OWCuZLG_bf5kdivV_7vBAU5lshPtkWEX')">📖 Volume 6</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="openPDF('172-WF-dXVokihZE1Sgcj4-1DRO5CjHiI')">📖 Volume 7</button>
             </div>
             <div class="card">
-                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="window.open('https://drive.google.com/uc?id=1j7Q-LS22Rxhw7-28UlaYdj8r2BS-Myb0&export=download', '_blank')">🌍 Geografia Bíblica</button>
-                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left;" onclick="window.open('https://drive.google.com/uc?id=1fT8KxG1D61_eLdghn06u4nUCjRqlr9Uf&export=download', '_blank')">📜 Mil Esboços para Pregadores</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="openPDF('1j7Q-LS22Rxhw7-28UlaYdj8r2BS-Myb0')">🌍 Geografia Bíblica</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left;" onclick="openPDF('1fT8KxG1D61_eLdghn06u4nUCjRqlr9Uf')">📜 Mil Esboços para Pregadores</button>
             </div>
         </section>
     </main>
@@ -126,12 +129,19 @@
             if(btn) btn.classList.add('active');
         }
 
+        // FUNÇÃO DE PDF MELHORADA PARA APK
+        function openPDF(id) {
+            const url = "https://docs.google.com/viewer?embedded=true&url=https://drive.google.com/uc?id=" + id;
+            window.location.href = url;
+        }
+
         function execCmd(cmd) { document.execCommand(cmd, false, null); checkStyles(); }
         function checkStyles() {
             document.getElementById('btn-bold').classList.toggle('active', document.queryCommandState('bold'));
             document.getElementById('btn-italic').classList.toggle('active', document.queryCommandState('italic'));
         }
 
+        // AGENDA
         function saveAgenda() {
             const date = document.getElementById('agenda-date').value;
             const text = document.getElementById('agenda-text').value;
@@ -152,6 +162,7 @@
             });
         }
 
+        // ESBOÇOS
         function saveSermon() {
             const t = document.getElementById('sermon-title').value;
             const c = document.getElementById('sermon-editor').innerHTML;
@@ -173,8 +184,8 @@
             }
         }
         function deleteSermon(k) { localStorage.removeItem(k); loadSermons(); }
+
         window.onload = function() { loadSermons(); loadAgenda(); };
     </script>
 </body>
 </html>
-w
