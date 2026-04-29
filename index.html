@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg-dark); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
-        /* BOTÃO APK MESTRE */
         .btn-apk-home { position: fixed; bottom: 25px; right: 25px; width: 70px; height: 70px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 10px; z-index: 99999999; border: 3px solid #000; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.9); cursor: pointer; }
 
         .nav-header { background: #0f1014; border-bottom: 1px solid var(--glass); padding: 10px 5px; z-index: 1000; }
@@ -23,22 +22,19 @@
         .view-section.active { display: flex; }
 
         .card { background: var(--glass); padding: 20px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(12px); margin-bottom: 15px; }
-        .action-btn { background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; padding: 15px; border-radius: 16px; font-weight: bold; color: #000; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 13px; }
+        .action-btn { background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; padding: 15px; border-radius: 16px; font-weight: bold; color: #000; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 13px; text-decoration: none; display: block; text-align: center; }
         
-        /* EDITOR E TOOLBAR */
+        .bible-mask { width: 100%; height: 100%; border-radius: 15px; overflow: hidden; background: #fff; position: relative; }
+        .bible-mask iframe { width: 100%; height: 115%; border: none; position: absolute; top: -65px; left: 0; }
+
         .toolbar { display: flex; gap: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; }
-        .tool-btn { background: #333; color: var(--gold); border: 1px solid var(--gold); padding: 8px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; }
-        .tool-btn.active { background: var(--gold) !important; color: #000 !important; box-shadow: 0 0 10px var(--gold); }
+        .tool-btn { background: #333; color: var(--gold); border: 1px solid var(--gold); padding: 8px 22px; border-radius: 8px; font-weight: 800; cursor: pointer; transition: 0.2s; }
+        .tool-btn.active { background: var(--gold) !important; color: #000 !important; box-shadow: 0 0 15px var(--gold); }
         #sermon-editor { width: 100%; min-height: 280px; background: #15161a; color: white; border: 1px solid var(--glass); border-radius: 18px; padding: 18px; font-size: 16px; outline: none; border-left: 5px solid var(--gold); overflow-y: auto; text-align: left; line-height: 1.5; }
 
-        /* LISTAS */
-        .item-list-card { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; margin-bottom: 10px; border-left: 4px solid var(--gold); }
+        .item-list-card { display: flex; flex-direction: column; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; margin-bottom: 10px; border-left: 4px solid var(--gold); }
         .agenda-done { opacity: 0.3; filter: grayscale(1); border-left-color: #28a745; }
-        .btn-mini { width: 35px; height: 35px; border-radius: 8px; border: none; cursor: pointer; color: white; font-weight: bold; display: flex; align-items: center; justify-content: center; }
-
-        /* BÍBLIA MASCARADA */
-        .bible-mask { width: 100%; height: 100%; border-radius: 15px; overflow: hidden; background: #fff; position: relative; }
-        .bible-mask iframe { width: 100%; height: 110%; border: none; position: absolute; top: -50px; left: 0; }
+        .btn-mini { padding: 10px; border-radius: 8px; border: none; color: white; font-weight: bold; flex: 1; font-size: 11px; cursor: pointer; }
 
         #reader-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100000000; display: none; flex-direction: column; padding: 30px; overflow-y: auto; }
     </style>
@@ -67,7 +63,7 @@
             <div class="card" style="text-align:center;">
                 <button class="action-btn" style="background:#28a745; color:white;" onclick="switchView('agenda', document.querySelectorAll('.tab-btn')[0])">📅 MINHA AGENDA</button>
                 <div id="home-notif" style="background: rgba(197, 160, 89, 0.1); border-left: 4px solid var(--gold); padding: 15px; border-radius: 12px; margin-top: 10px; text-align: left;">
-                    <strong style="color:var(--gold); font-size: 13px;">🔔 LEMBRETES PRÓXIMOS:</strong>
+                    <strong style="color:var(--gold); font-size: 13px;">🔔 LEMBRETES:</strong>
                     <div id="notif-content" style="font-size: 12px; margin-top:5px; color: #fff;">Tudo em dia!</div>
                 </div>
             </div>
@@ -75,7 +71,7 @@
             <div class="card" style="border:1px dashed var(--gold); text-align:center; margin-top: 30px;">
                 <button class="action-btn" style="background:#009ee3; color:white;" onclick="window.open('https://mpago.la/126sWfx', '_blank')">🤝 REALIZAR OFERTA VOLUNTÁRIA</button>
                 <p style="font-size:12px; color:#aaa; margin-top:15px; font-style:italic; line-height: 1.5;">
-                    "Este projeto é totalmente gratuito para abençoar seu ministério. Se você sente no coração o desejo de apoiar esta obra, sua contribuição voluntária é fundamental para mantermos as ferramentas ativas. Deus abençoe!"
+                    "Sinta-se à vontade para apoiar este projeto ministerial. Sua oferta ajuda a manter as ferramentas ativas e gratuitas para todos os obreiros. Deus abençoe sua generosidade!"
                 </p>
             </div>
         </section>
@@ -84,7 +80,8 @@
             <div class="card">
                 <input type="hidden" id="agenda-id">
                 <input type="date" id="agenda-date" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:15px; border-radius:12px; margin-bottom:10px;">
-                <input type="text" id="agenda-text" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:15px; border-radius:12px; margin-bottom:15px;" placeholder="Compromisso...">
+                <input type="text" id="agenda-text" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:15px; border-radius:12px; margin-bottom:10px;" placeholder="O que agendar?">
+                <input type="file" id="agenda-file" accept="image/*" style="width:100%; color:white; margin-bottom:15px;">
                 <button class="action-btn" onclick="saveAgenda()">SALVAR</button>
             </div>
             <div id="agenda-list"></div>
@@ -98,10 +95,10 @@
             <div class="card">
                 <input type="text" id="sermon-title" style="width:100%; background:#15161a; color:var(--gold); border:1px solid var(--glass); padding:15px; border-radius:12px; margin-bottom:12px;" placeholder="Título">
                 <div class="toolbar">
-                    <button id="btn-bold" class="tool-btn" onclick="execCmd('bold')">B</button>
-                    <button id="btn-italic" class="tool-btn" style="font-style:italic;" onclick="execCmd('italic')">I</button>
+                    <button id="btn-bold" class="tool-btn" onmousedown="event.preventDefault()" onclick="execCmd('bold')">B</button>
+                    <button id="btn-italic" class="tool-btn" style="font-style:italic;" onmousedown="event.preventDefault()" onclick="execCmd('italic')">I</button>
                 </div>
-                <div id="sermon-editor" contenteditable="true" oninput="checkStyles()" onclick="checkStyles()"></div>
+                <div id="sermon-editor" contenteditable="true" onkeyup="updateStyleState()" onclick="updateStyleState()"></div>
                 <div style="display:flex; gap:10px; margin-top:15px;">
                     <button class="action-btn" style="flex:1;" onclick="saveSermon()">SALVAR</button>
                     <button class="action-btn" style="flex:1; background:#333; color:white;" onclick="clearEditor()">NOVO</button>
@@ -112,37 +109,36 @@
 
         <section id="view-estudos" class="view-section">
             <div class="card" style="text-align:center;">
-                <h3 style="color:var(--gold); margin-bottom:15px;">Pesquisa Apologética</h3>
-                <input type="text" id="inputSeita" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:15px; border-radius:12px; margin-bottom:15px;" placeholder="Ex: CCB, Maçonaria...">
-                <button class="action-btn" onclick="window.open('https://www.cacp.app.br/?s=' + encodeURIComponent(document.getElementById('inputSeita').value), '_blank')">🔍 BUSCAR NO CACP</button>
+                <input type="text" id="inputSeita" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:15px; border-radius:12px; margin-bottom:15px;" placeholder="Pesquisar Seita...">
+                <button class="action-btn" onclick="window.open('https://www.cacp.app.br/?s=' + encodeURIComponent(document.getElementById('inputSeita').value), '_blank')">🔍 ABRIR NO NAVEGADOR</button>
             </div>
         </section>
 
-        <section id="view-materiais" class="view-section" style="padding:5px;">
+        <section id="view-materiais" class="view-section" style="padding:10px;">
             <div id="pdf-menu">
                 <div class="card">
-                    <h3 style="color:var(--gold); margin-bottom:15px; text-align:center;">Biblioteca</h3>
+                    <h3 style="color:var(--gold); margin-bottom:20px; text-align:center;">Biblioteca</h3>
                     <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1ukE1_cJNNSKFI4VBiwCdLesm6oRT3weu')">📖 História Vol. 1</button>
                     <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1WnHrDLZ6ZKKmVidTwuzZ_HPOroEup0Us')">📖 História Vol. 2</button>
                     <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1AvZtXGybmuEvqHUdtCuhnPzxbRyanDfe')">📖 História Vol. 3</button>
                     <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('18-r2qE1eDnF_Rh7CfrYoFSqG4RgQhUMM')">📖 História Vol. 4</button>
                     <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1UriFN9nzlOH29TSawHyXpvDu3Bb4gYhY')">📖 História Vol. 5</button>
                     <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1OWCuZLG_bf5kdivV_7vBAU5lshPtkWEX')">📖 História Vol. 6</button>
-                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('172-WF-dXVokihZE1Sgcj4-1DRO5CjHiI')">📖 Volume 7</button>
+                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('172-WF-dXVokihZE1Sgcj4-1DRO5CjHiI')">📖 História Vol. 7</button>
                     <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1j7Q-LS22Rxhw7-28UlaYdj8r2BS-Myb0')">🌍 Geografia Bíblica</button>
                     <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left;" onclick="loadPDF('1fT8KxG1D61_eLdghn06u4nUCjRqlr9Uf')">📜 Mil Esboços</button>
                 </div>
             </div>
             <div id="pdf-viewer-container" style="display:none; flex:1; flex-direction:column; height:100%;">
-                <button class="action-btn" style="background:red; color:white; margin-bottom:10px;" onclick="closePDF()">❌ FECHAR LEITURA</button>
-                <iframe id="iframe-pdf" style="width:100%; flex:1; border-radius:15px;"></iframe>
+                <button class="action-btn" style="background:red; color:white; margin-bottom:10px;" onclick="closePDF()">❌ FECHAR LIVRO</button>
+                <iframe id="iframe-pdf" style="width:100%; flex:1; border-radius:15px; background:white;"></iframe>
             </div>
         </section>
     </main>
 
     <div id="reader-overlay">
         <button class="action-btn" style="background:var(--gold); margin-bottom:20px;" onclick="closeReader()">FECHAR LEITURA</button>
-        <h2 id="reader-title" style="color: var(--gold); margin-bottom:15px;"></h2>
+        <h2 id="reader-title" style="color:var(--gold); margin-bottom:10px; text-align:center;"></h2>
         <div id="reader-content" style="color:white; font-size:18px; line-height:1.6;"></div>
     </div>
 
@@ -152,29 +148,26 @@
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('view-' + id).classList.add('active');
             if(btn) btn.classList.add('active');
-            if(id !== 'materiais') closePDF();
         }
 
-        // COMANDO DE ESTILO CORRIGIDO
-        function execCmd(cmd) {
-            document.execCommand(cmd, false, null);
-            document.getElementById('sermon-editor').focus();
-            checkStyles();
-        }
-        function checkStyles() {
+        function execCmd(cmd) { document.execCommand(cmd, false, null); updateStyleState(); }
+        function updateStyleState() {
             document.getElementById('btn-bold').classList.toggle('active', document.queryCommandState('bold'));
             document.getElementById('btn-italic').classList.toggle('active', document.queryCommandState('italic'));
         }
 
-        // AGENDA
         function saveAgenda() {
             const d = document.getElementById('agenda-date').value; const t = document.getElementById('agenda-text').value;
+            const file = document.getElementById('agenda-file').files[0];
             const id = document.getElementById('agenda-id').value || 'rcid_agenda_' + new Date().getTime();
             if(!d || !t) return;
-            localStorage.setItem(id, JSON.stringify({date: d, text: t, done: false}));
-            document.getElementById('agenda-date').value = ""; document.getElementById('agenda-text').value = ""; document.getElementById('agenda-id').value = "";
-            loadAgenda(); updateHomeNotif();
+            if(file) {
+                const r = new FileReader();
+                r.onload = function(e) { localStorage.setItem(id, JSON.stringify({date:d, text:t, img:e.target.result, done:false})); finishAgenda(); };
+                r.readAsDataURL(file);
+            } else { localStorage.setItem(id, JSON.stringify({date:d, text:t, img:null, done:false})); finishAgenda(); }
         }
+        function finishAgenda() { document.getElementById('agenda-date').value=""; document.getElementById('agenda-text').value=""; document.getElementById('agenda-file').value=""; document.getElementById('agenda-id').value=""; loadAgenda(); updateHomeNotif(); }
         function loadAgenda() {
             const list = document.getElementById('agenda-list'); list.innerHTML = ""; let items = [];
             for (let i=0; i<localStorage.length; i++) {
@@ -182,8 +175,9 @@
             }
             items.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(it => {
                 const card = document.createElement('div'); card.className = 'item-list-card' + (it.done ? ' agenda-done' : '');
-                card.innerHTML = `<div><strong>${it.date.split('-').reverse().join('/')}</strong><br>${it.text}</div>
-                <div style="display:flex; gap:8px;">
+                let img = it.img ? `<img src="${it.img}" style="width:100%; border-radius:10px; margin-top:10px;">` : '';
+                card.innerHTML = `<div><strong>${it.date.split('-').reverse().join('/')}</strong><br>${it.text}</div>${img}
+                <div style="display:flex; gap:8px; margin-top:10px;">
                     <button class="btn-mini" style="background:#28a745;" onclick="toggleAgenda('${it.k}')">✓</button>
                     <button class="btn-mini" style="background:#009ee3;" onclick="editAgenda('${it.k}')">✎</button>
                     <button class="btn-mini" style="background:red;" onclick="deleteAgenda('${it.k}')">X</button>
@@ -191,32 +185,28 @@
                 list.appendChild(card);
             });
         }
-        function toggleAgenda(k) { let d = JSON.parse(localStorage.getItem(k)); d.done = !d.done; localStorage.setItem(k, JSON.stringify(d)); loadAgenda(); updateHomeNotif(); }
-        function deleteAgenda(k) { localStorage.removeItem(k); loadAgenda(); updateHomeNotif(); }
-        function editAgenda(k) { let d = JSON.parse(localStorage.getItem(k)); document.getElementById('agenda-date').value = d.date; document.getElementById('agenda-text').value = d.text; document.getElementById('agenda-id').value = k; }
-        
+        function toggleAgenda(k) { let d=JSON.parse(localStorage.getItem(k)); d.done=!d.done; localStorage.setItem(k, JSON.stringify(d)); loadAgenda(); updateHomeNotif(); }
+        function editAgenda(k) { let d=JSON.parse(localStorage.getItem(k)); document.getElementById('agenda-date').value=d.date; document.getElementById('agenda-text').value=d.text; document.getElementById('agenda-id').value=k; window.scrollTo(0,0); }
+        function deleteAgenda(k) { if(confirm("Apagar?")) { localStorage.removeItem(k); loadAgenda(); updateHomeNotif(); } }
+
         function updateHomeNotif() {
-            let items = [];
+            const cont = document.getElementById('notif-content'); let items = [];
             for (let i=0; i<localStorage.length; i++) {
-                const k = localStorage.key(i); if(k.startsWith('rcid_agenda_')) { let d = JSON.parse(localStorage.getItem(k)); if(!d.done) items.push(d); }
+                const k = localStorage.key(i); if(k.startsWith('rcid_agenda_')) { let d=JSON.parse(localStorage.getItem(k)); if(!d.done) items.push(d); }
             }
-            items.sort((a,b) => new Date(a.date) - new Date(b.date));
-            const cont = document.getElementById('notif-content');
             if(items.length > 0) {
-                let html = "Lembretes próximos:<br>";
-                items.slice(0, 2).forEach(it => html += `• ${it.date.split('-').reverse().join('/')}: ${it.text}<br>`);
-                cont.innerHTML = html;
+                items.sort((a,b) => new Date(a.date) - new Date(b.date));
+                cont.innerHTML = `📌 <b>${items[0].date.split('-').reverse().join('/')}</b>: ${items[0].text}`;
             } else { cont.innerHTML = "Tudo em dia!"; }
         }
 
-        // ESBOÇOS
         function saveSermon() {
             const t = document.getElementById('sermon-title').value; const c = document.getElementById('sermon-editor').innerHTML;
             if(!t || c==="") return;
-            localStorage.setItem('rcid_sermon_' + t, JSON.stringify({title: t, content: c}));
-            clearEditor(); loadSermons();
+            localStorage.setItem('rcid_sermon_'+t, JSON.stringify({title:t, content:c}));
+            clearEditor(); loadSermons(); alert("Salvo!");
         }
-        function clearEditor() { document.getElementById('sermon-title').value = ""; document.getElementById('sermon-editor').innerHTML = ""; checkStyles(); }
+        function clearEditor() { document.getElementById('sermon-title').value=""; document.getElementById('sermon-editor').innerHTML=""; updateStyleState(); }
         function loadSermons() {
             const list = document.getElementById('saved-list'); list.innerHTML = "";
             for (let i=0; i<localStorage.length; i++) {
@@ -231,17 +221,15 @@
                 }
             }
         }
-        function openReader(k) { let d = JSON.parse(localStorage.getItem(k)); document.getElementById('reader-title').innerText = d.title; document.getElementById('reader-content').innerHTML = d.content; document.getElementById('reader-overlay').style.display = 'flex'; }
-        function closeReader() { document.getElementById('reader-overlay').style.display = 'none'; }
-        function editSermon(k) { let d = JSON.parse(localStorage.getItem(k)); document.getElementById('sermon-title').value = d.title; document.getElementById('sermon-editor').innerHTML = d.content; switchView('esboços', document.querySelectorAll('.tab-btn')[2]); }
-        function deleteSermon(k) { localStorage.removeItem(k); loadSermons(); }
+        function openReader(k) { let d=JSON.parse(localStorage.getItem(k)); document.getElementById('reader-title').innerText=d.title; document.getElementById('reader-content').innerHTML=d.content; document.getElementById('reader-overlay').style.display='flex'; }
+        function closeReader() { document.getElementById('reader-overlay').style.display='none'; }
+        function editSermon(k) { let d=JSON.parse(localStorage.getItem(k)); document.getElementById('sermon-title').value=d.title; document.getElementById('sermon-editor').innerHTML=d.content; switchView('esboços', document.querySelectorAll('.tab-btn')[2]); window.scrollTo(0,0); updateStyleState(); }
+        function deleteSermon(k) { if(confirm("Apagar?")) { localStorage.removeItem(k); loadSermons(); } }
 
-        // PDF
-        function loadPDF(id) { document.getElementById('iframe-pdf').src = "https://docs.google.com/viewer?embedded=true&url=https://drive.google.com/uc?id=" + id; document.getElementById('pdf-menu').style.display = 'none'; document.getElementById('pdf-viewer-container').style.display = 'flex'; }
-        function closePDF() { document.getElementById('iframe-pdf').src = ""; document.getElementById('pdf-menu').style.display = 'block'; document.getElementById('pdf-viewer-container').style.display = 'none'; }
+        function loadPDF(id) { document.getElementById('iframe-pdf').src = "https://docs.google.com/viewer?embedded=true&url=https://drive.google.com/uc?id=" + id; document.getElementById('pdf-menu').style.display='none'; document.getElementById('pdf-viewer-container').style.display='flex'; }
+        function closePDF() { document.getElementById('iframe-pdf').src = ""; document.getElementById('pdf-menu').style.display='block'; document.getElementById('pdf-viewer-container').style.display='none'; }
 
-        window.onload = function() { loadAgenda(); loadSermons(); updateHomeNotif(); };
+        window.onload = function() { loadSermons(); loadAgenda(); updateHomeNotif(); };
     </script>
 </body>
 </html>
-         
