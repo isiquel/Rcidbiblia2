@@ -10,12 +10,13 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg-dark); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; transition: 0.3s; }
 
-        /* MODO CLARO PARA LEITURA */
         body.light-mode-active { background: #ffffff !important; color: #000000 !important; }
         body.light-mode-active .card, body.light-mode-active #reader-overlay { background: #f0f0f0 !important; color: #000 !important; }
         body.light-mode-active #reader-content { color: #000 !important; }
 
-        .btn-apk-home { position: fixed; bottom: 25px; right: 25px; width: 70px; height: 70px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 10px; z-index: 99999999; border: 3px solid #000; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.9); cursor: pointer; }
+        .btn-apk-home { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 9px; z-index: 99999999; border: 3px solid #000; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.9); cursor: pointer; touch-action: none; }
+        
+        .btn-radio-mini { position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px; background: #e63946; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 8px; z-index: 99999999; border: 2px solid #000; text-align: center; box-shadow: 0 4px 20px rgba(230,57,70,0.4); cursor: pointer; touch-action: none; }
 
         .nav-header { background: #0f1014; border-bottom: 1px solid var(--glass); padding: 10px 5px; z-index: 1000; }
         .nav-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 1200px; margin: 0 auto; }
@@ -26,14 +27,17 @@
         .view-section { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; flex-direction: column; padding: 20px; overflow-y: auto; }
         .view-section.active { display: flex; }
 
-        .card { background: var(--glass); padding: 20px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(12px); margin-bottom: 15px; }
-        .action-btn { background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; padding: 15px; border-radius: 16px; font-weight: bold; color: #000; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 13px; text-decoration: none; display: block; text-align: center; }
+        .card { background: var(--glass); padding: 10px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(12px); margin-bottom: 8px; }
+        .action-btn { background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; padding: 12px; border-radius: 16px; font-weight: bold; color: #000; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 12px; text-decoration: none; display: block; text-align: center; }
         
-        .toolbar { display: flex; gap: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; }
-        .tool-btn { background: #333; color: var(--gold); border: 1px solid var(--gold); padding: 8px 22px; border-radius: 8px; font-weight: 800; cursor: pointer; }
+        .progress-bg { height: 8px; background: #333; border-radius: 4px; margin: 2px 0 6px 0; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--gold); width: 0%; transition: 0.5s; }
+
+        .toolbar { display: flex; gap: 10px; margin-bottom: 10px; background: #222; padding: 10px; border-radius: 10px; position: sticky; top: 0; z-index: 10; border-bottom: 2px solid var(--gold); align-items: center; }
+        .tool-btn { background: #333; color: var(--gold); border: 1px solid var(--gold); padding: 8px 15px; border-radius: 8px; font-weight: 800; cursor: pointer; }
         .tool-btn.active { background: var(--gold) !important; color: #000 !important; }
         
-        #sermon-editor { width: 100%; min-height: 280px; background: #15161a; color: white; border: 1px solid var(--glass); border-radius: 18px; padding: 18px; font-size: 16px; outline: none; border-left: 5px solid var(--gold); overflow-y: auto; text-align: left; }
+        #sermon-editor { width: 100%; height: 200px; background: #15161a; color: white; border: 1px solid var(--glass); border-radius: 18px; padding: 15px; font-size: 16px; outline: none; border-left: 5px solid var(--gold); overflow-y: auto; text-align: left; }
 
         .item-list-card { display: flex; flex-direction: column; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; margin-bottom: 10px; border-left: 4px solid var(--gold); }
         .agenda-done { opacity: 0.3; filter: grayscale(1); border-left-color: #28a745; }
@@ -41,11 +45,42 @@
         #reader-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100000000; display: none; flex-direction: column; padding: 30px; overflow-y: auto; transition: 0.3s; }
         .bible-mask { width: 100%; height: 100%; border-radius: 15px; overflow: hidden; background: #fff; position: relative; }
         .bible-mask iframe { width: 100%; height: 115%; border: none; position: absolute; top: -65px; left: 0; }
+        
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.2; } 100% { opacity: 1; } }
+        .blink-btn { animation: blink 1s infinite; font-size: 20px; font-weight: bold; color: red; background: transparent; border: none; cursor: pointer; }
     </style>
 </head>
 <body>
 
+    <div id="offer-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:999999999; background:rgba(0,0,0,0.9); flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;">
+        <div class="card" style="background:#15161a; border: 2px solid var(--gold); width:100%; max-width:400px; padding:25px; position: relative;">
+            <button id="close-offer-btn" class="blink-btn" style="display:none; position: absolute; top: 10px; right: 10px;" onclick="closeOfferModal()">X</button>
+            <h2 style="color:var(--gold); margin-bottom:15px;">🙏 Ajude nosso Ministério</h2>
+            <p style="color:#fff; font-size:14px; margin-bottom:20px;">O aplicativo é gratuito, mas sua oferta nos ajuda a mantê-lo online. Se puder contribuir, ficaremos gratos!</p>
+            <button class="action-btn" style="margin-bottom:10px;" onclick="window.open('https://mpago.la/126sWfx', '_blank'); closeOfferModal();">OFERTAR AGORA</button>
+            <button onclick="closeOfferModal()" style="background:transparent; border:1px solid #444; color:#888; padding:10px; width:100%; border-radius:16px; cursor:pointer;">OFERTAR DEPOIS</button>
+        </div>
+    </div>
+
+    <div id="bible-hint" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:999999999; background:rgba(0,0,0,0.85); flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;">
+        <div style="background:rgba(20,20,20,0.9); padding:30px; border-radius:20px; border:2px solid var(--gold);">
+            <p style="color:var(--text); font-size:18px; margin-bottom:20px;">Role para cima a tela para você achar os livros da Bíblia.</p>
+            <div style="font-size:50px; color:var(--gold); animation:bounce 1.5s infinite; margin-bottom:15px;">👆</div>
+            <button onclick="closeBibleHint()" class="action-btn" style="width: auto; padding: 10px 30px;">FECHAR</button>
+        </div>
+    </div>
+
+    <div id="btnRadio" class="btn-radio-mini" onclick="toggleRadio()">▶️<br>RÁDIO<br>GOSPEL</div>
     <div class="btn-apk-home" onclick="location.reload()">INÍCIO<br>APP</div>
+
+    <div id="radioContainer" style="position:fixed; top:10%; left:5%; width:90%; height:250px; background:#000; border:2px solid var(--gold); border-radius:15px; display:none; z-index:99999; touch-action:none;">
+        <div style="display:flex; justify-content:space-between; background:#222; padding:5px; cursor:move;">
+            <button onclick="minimizeRadio()" style="background:none; border:none; color:white; padding:5px;">➖</button>
+            <button onclick="closeRadio()" style="background:none; border:none; color:red; padding:5px;">❌</button>
+        </div>
+        <iframe id="radioIframe" width="100%" height="200" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 
     <header class="nav-header">
         <div class="nav-tabs">
@@ -59,49 +94,71 @@
 
     <main class="content-wrapper">
         <section id="view-home" class="view-section active">
-            <div class="card" style="text-align:center;">
-                <h2 style="color:var(--gold); font-weight:800; font-size: 26px;">RCID BIBLE PRO</h2>
-                <button class="action-btn" style="margin-top:20px;" onclick="switchView('leitura', document.querySelectorAll('.tab-btn')[1])">📖 ABRIR BÍBLIA ONLINE</button>
+            <h2 style="color:var(--gold); font-weight:800; font-size: 18px; text-align: center; margin-bottom: 8px;">RCID BIBLE PRO</h2>
+            
+            <div class="card" style="padding:6px;">
+                <h3 style="color:var(--gold); font-size:11px; margin-bottom:4px;">📊 PROGRESSO (META: 21/sem)</h3>
+                <label style="font-size:9px;">Bíblia</label>
+                <div class="progress-bg"><div id="prog-bible" class="progress-fill"></div></div>
+                <label style="font-size:9px;">Estudos</label>
+                <div class="progress-bg"><div id="prog-materiais" class="progress-fill"></div></div>
+                <button onclick="resetProgress()" style="background:none; border:none; color:var(--gold); font-size:8px; text-decoration:underline;">Zerar Semana</button>
             </div>
             
-            <div class="card" style="text-align:center;">
+            <div class="card">
                 <button class="action-btn" style="background:#28a745; color:white;" onclick="switchView('agenda', document.querySelectorAll('.tab-btn')[0])">📅 MINHA AGENDA</button>
-                <div id="home-notif" style="background: rgba(197, 160, 89, 0.1); border-left: 4px solid var(--gold); padding: 15px; border-radius: 12px; margin-top: 10px; text-align: left;">
-                    <strong style="color:var(--gold); font-size: 13px;">🔔 LEMBRETES:</strong>
-                    <div id="notif-content" style="font-size: 12px; margin-top:5px; color: #fff;">Tudo em dia!</div>
+                <div id="home-notif" style="background: rgba(197, 160, 89, 0.1); border-left: 4px solid var(--gold); padding: 8px; border-radius: 10px; margin-top: 5px; text-align: left;">
+                    <strong style="color:var(--gold); font-size: 10px;">🔔 LEMBRETES:</strong>
+                    <div id="home-notif-content" style="font-size: 10px; margin-top:2px; color: #fff;">Tudo em dia!</div>
                 </div>
             </div>
 
-            <div class="card" style="border:1px dashed var(--gold); text-align:center; margin-top: 30px;">
-                <button class="action-btn" style="background:#009ee3; color:white;" onclick="window.open('https://mpago.la/126sWfx', '_blank')">🤝 REALIZAR OFERTA VOLUNTÁRIA</button>
-                <p style="font-size:12px; color:#aaa; margin-top:15px; font-style:italic;">"Sua oferta ajuda a manter esta obra gratuita para todos."</p>
+            <div class="card" style="border:1px dashed var(--gold); text-align:center; padding: 10px;">
+                <button class="action-btn" style="background:#c5a059; color:#000; margin-bottom:8px;" onclick="switchView('escala', null)">📋 ESCALA DO MÊS</button>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 10px; margin-bottom: 8px; text-align: left; border-left: 3px solid var(--gold);">
+                    <strong style="color:var(--gold); font-size: 10px;">📖 VERSÍCULO DO DIA:</strong>
+                    <p style="font-size: 10px; margin-top: 2px; color: #fff; font-style: italic;">"Lâmpada para os meus pés é tua palavra, e luz para o meu caminho." (Salmos 119:105)</p>
+                </div>
+                <button class="action-btn" style="background:#009ee3; color:white; margin-bottom:10px;" onclick="window.open('https://mpago.la/126sWfx', '_blank')">🤝 REALIZAR OFERTA</button>
+                <p style="color: #bbb; font-size: 10px; line-height: 1.3; margin-top: 5px; font-style: italic;">"Sua oferta é uma semente que permite continuarmos a levar o Evangelho a todos. Seja um mantenedor desta obra e colha frutos espirituais!"</p>
+            </div>
+        </section>
+
+        <section id="view-escala" class="view-section">
+            <div class="card" style="text-align: center;">
+                <h3 style="color:var(--gold);">Escalas</h3>
+                <button class="action-btn" style="background:rgba(255,255,255,0.1); color:var(--gold-light); margin-top: 20px;" onclick="openEscala('1ykEToGrC5oM_TBI3_PkvNXU_A-_iF4I6')">📅 ABRIR ESCALA</button>
             </div>
         </section>
 
         <section id="view-agenda" class="view-section">
             <div class="card">
                 <input type="hidden" id="agenda-id">
-                <input type="date" id="agenda-date" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:15px; border-radius:12px; margin-bottom:10px;">
-                <input type="text" id="agenda-text" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:15px; border-radius:12px; margin-bottom:10px;" placeholder="O que agendar?">
-                <input type="file" id="agenda-file" accept="image/*" style="width:100%; color:white; margin-bottom:15px;">
+                <input type="date" id="agenda-date" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:10px; border-radius:12px; margin-bottom:8px;">
+                <input type="text" id="agenda-text" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:10px; border-radius:12px; margin-bottom:8px;" placeholder="O que agendar?">
+                <input type="file" id="agenda-file" accept="image/*" style="width:100%; color:white; margin-bottom:10px;">
                 <button class="action-btn" onclick="saveAgenda()">SALVAR</button>
             </div>
             <div id="agenda-list"></div>
         </section>
 
         <section id="view-leitura" class="view-section" style="padding:5px;">
-            <div class="bible-mask"><iframe src="https://www.bibliaonline.com.br/acf/"></iframe></div>
+            <div class="bible-mask"><iframe src="https://www.bibliaonline.com.br/acf/" onload="trackProgress('bible')"></iframe></div>
         </section>
 
         <section id="view-esboços" class="view-section">
             <div class="card">
-                <input type="text" id="sermon-title" style="width:100%; background:#15161a; color:var(--gold); border:1px solid var(--glass); padding:15px; border-radius:12px; margin-bottom:12px;" placeholder="Título">
+                <input type="text" id="sermon-title" style="width:100%; background:#15161a; color:var(--gold); border:1px solid var(--glass); padding:10px; border-radius:12px; margin-bottom:8px;" placeholder="Título">
                 <div class="toolbar">
-                    <button class="tool-btn" onmousedown="event.preventDefault()" onclick="execCmd('bold')">B</button>
-                    <button class="tool-btn" onmousedown="event.preventDefault()" onclick="execCmd('italic')">I</button>
+                    <button class="tool-btn" data-cmd="bold" onmousedown="event.preventDefault()" onclick="execCmd('bold')">B</button>
+                    <button class="tool-btn" data-cmd="italic" onmousedown="event.preventDefault()" onclick="execCmd('italic')">I</button>
+                    <button class="tool-btn" data-cmd="underline" onmousedown="event.preventDefault()" onclick="execCmd('underline')">U</button>
+                    <select id="fontSizeSelect" onchange="execCmd('fontSize', this.value)" style="background:#333; color:var(--gold); border:1px solid var(--gold); border-radius:8px; padding:5px; font-weight:bold;">
+                        <option value="3">Tamanho</option><option value="4">Médio</option><option value="6">Grande</option>
+                    </select>
                 </div>
                 <div id="sermon-editor" contenteditable="true" onkeyup="updateStyleState()" onclick="updateStyleState()"></div>
-                <div style="display:flex; gap:10px; margin-top:15px;">
+                <div style="display:flex; gap:10px; margin-top:10px;">
                     <button class="action-btn" style="flex:1;" onclick="saveSermon()">SALVAR</button>
                     <button class="action-btn" style="flex:1; background:#333; color:white;" onclick="clearEditor()">NOVO</button>
                 </div>
@@ -112,28 +169,50 @@
         <section id="view-estudos" class="view-section">
             <div class="card" style="text-align:center;">
                 <input type="text" id="inputSeita" style="width:100%; background:#15161a; color:white; border:1px solid var(--gold); padding:15px; border-radius:12px; margin-bottom:15px;" placeholder="Pesquisar Seita...">
-                <button class="action-btn" onclick="window.open('https://www.cacp.app.br/?s=' + encodeURIComponent(document.getElementById('inputSeita').value), '_blank')">🔍 ABRIR NO NAVEGADOR</button>
+                <button class="action-btn" onclick="trackProgress('materiais'); window.open('https://www.cacp.app.br/?s=' + encodeURIComponent(document.getElementById('inputSeita').value), '_blank')">🔍 ABRIR NO NAVEGADOR</button>
+            </div>
+            <div class="card" style="border: 1px solid var(--gold); background: rgba(197, 160, 89, 0.05);">
+                <p style="color: var(--gold); font-size: 12px; text-align: center; font-weight: 600;">⚠️ <b>AVISO IMPORTANTE</b><br>Ao clicar em pesquisar, o link será aberto no seu navegador. Para retornar ao aplicativo, basta fechar o navegador e abrir o app novamente.</p>
             </div>
         </section>
 
         <section id="view-materiais" class="view-section" style="padding:10px;">
             <div id="pdf-menu">
                 <div class="card">
-                    <h3 style="color:var(--gold); margin-bottom:20px; text-align:center;">Biblioteca</h3>
-                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1ukE1_cJNNSKFI4VBiwCdLesm6oRT3weu')">📖 História Vol. 1</button>
-                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1WnHrDLZ6ZKKmVidTwuzZ_HPOroEup0Us')">📖 História Vol. 2</button>
-                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1AvZtXGybmuEvqHUdtCuhnPzxbRyanDfe')">📖 História Vol. 3</button>
-                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('18-r2qE1eDnF_Rh7CfrYoFSqG4RgQhUMM')">📖 História Vol. 4</button>
-                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1UriFN9nzlOH29TSawHyXpvDu3Bb4gYhY')">📖 História Vol. 5</button>
-                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1OWCuZLG_bf5kdivV_7vBAU5lshPtkWEX')">📖 História Vol. 6</button>
-                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('172-WF-dXVokihZE1Sgcj4-1DRO5CjHiI')">📖 História Vol. 7</button>
-                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:8px;" onclick="loadPDF('1j7Q-LS22Rxhw7-28UlaYdj8r2BS-Myb0')">🌍 Geografia Bíblica</button>
-                    <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left;" onclick="loadPDF('1fT8KxG1D61_eLdghn06u4nUCjRqlr9Uf')">📜 Mil Esboços</button>
+                    <h3 style="color:var(--gold); margin-bottom:15px; text-align:center;">Biblioteca</h3>
+                    <button class="action-btn" style="margin-bottom:10px;" onclick="showFolder('folder-historia')">📁 História da Igreja</button>
+                    <button class="action-btn" style="margin-bottom:10px;" onclick="showFolder('folder-sermoes')">📁 Como fazer sermões</button>
+                    <button class="action-btn" style="margin-bottom:10px;" onclick="showFolder('folder-apologetica')">📁 Apologética Teológica</button>
+                    <button class="action-btn" style="margin-bottom:10px;" onclick="showFolder('folder-geografia')">📁 Geografia Bíblica</button>
                 </div>
             </div>
-            <div id="pdf-viewer-container" style="display:none; flex:1; flex-direction:column; height:100%;">
+            <div id="folder-historia" style="display:none;">
+                <button class="action-btn" style="background:#333; color:white; margin-bottom:10px;" onclick="showFolder('pdf-menu')">⬅️ Voltar</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1ukE1_cJNNSKFI4VBiwCdLesm6oRT3weu')">📖 Vol. 1</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1WnHrDLZ6ZKKmVidTwuzZ_HPOroEup0Us')">📖 Vol. 2</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1AvZtXGybmuEvqHUdtCuhnPzxbRyanDfe')">📖 Vol. 3</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('18-r2qE1eDnF_Rh7CfrYoFSqG4RgQhUMM')">📖 Vol. 4</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1UriFN9nzlOH29TSawHyXpvDu3Bb4gYhY')">📖 Vol. 5</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1OWCuZLG_bf5kdivV_7vBAU5lshPtkWEX')">📖 Vol. 6</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('172-WF-dXVokihZE1Sgcj4-1DRO5CjHiI')">📖 Vol. 7</button>
+            </div>
+            <div id="folder-sermoes" style="display:none;">
+                <button class="action-btn" style="background:#333; color:white; margin-bottom:10px;" onclick="showFolder('pdf-menu')">⬅️ Voltar</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1k2VnfMIB0Q6Hq6MdoZCa8NpeFRWfC8Y-')">📖 Como fazer sermões</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1fT8KxG1D61_eLdghn06u4nUCjRqlr9Uf')">📜 Mil Esboços</button>
+            </div>
+            <div id="folder-apologetica" style="display:none;">
+                <button class="action-btn" style="background:#333; color:white; margin-bottom:10px;" onclick="showFolder('pdf-menu')">⬅️ Voltar</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1eEfGHa7Otj8uol3qR-Tw2jyvRt0uHiTx')">📖 Apologética NT</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('16O8LGt0Fj5-i4EKjUWxNWCg8JtT_BwxD')">📖 Apologética VT</button>
+            </div>
+            <div id="folder-geografia" style="display:none;">
+                <button class="action-btn" style="background:#333; color:white; margin-bottom:10px;" onclick="showFolder('pdf-menu')">⬅️ Voltar</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1j7Q-LS22Rxhw7-28UlaYdj8r2BS-Myb0')">🌍 Geografia Bíblica</button>
+            </div>
+            <div id="pdf-viewer-container" style="display:none; flex-direction:column; z-index:999999999; background:#000;">
                 <button class="action-btn" style="background:red; color:white; margin-bottom:10px;" onclick="closePDF()">❌ FECHAR LEITURA</button>
-                <iframe id="iframe-pdf" style="width:100%; flex:1; border-radius:15px; background:white;"></iframe>
+                <iframe id="iframe-pdf" style="width:100%; height:100vh; border:none; background:white;"></iframe>
             </div>
         </section>
     </main>
@@ -148,95 +227,65 @@
     </div>
 
     <script>
-        function switchView(id, btn) {
-            document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('view-' + id).classList.add('active');
-            if(btn) btn.classList.add('active');
-        }
+        function showBibleHint() { const hint = document.getElementById('bible-hint'); hint.style.display = 'flex'; setTimeout(closeBibleHint, 3000); }
+        function closeBibleHint() { document.getElementById('bible-hint').style.display = 'none'; }
+        
+        function closeOfferModal() { document.getElementById('offer-modal').style.display = 'none'; }
+        
+        function showFolder(id) { document.getElementById('pdf-menu').style.display = 'none'; document.getElementById('folder-historia').style.display = 'none'; document.getElementById('folder-sermoes').style.display = 'none'; document.getElementById('folder-apologetica').style.display = 'none'; document.getElementById('folder-geografia').style.display = 'none'; if(id === 'pdf-menu') { document.getElementById('pdf-menu').style.display = 'block'; } else { document.getElementById(id).style.display = 'block'; } }
+        
+        function trackProgress(type) { let count = parseInt(localStorage.getItem('prog_'+type) || 0); localStorage.setItem('prog_'+type, count + 1); updateProgressUI(); }
+        function updateProgressUI() { let b = parseInt(localStorage.getItem('prog_bible') || 0); let m = parseInt(localStorage.getItem('prog_materiais') || 0); document.getElementById('prog-bible').style.width = Math.min((b/21)*100, 100) + '%'; document.getElementById('prog-materiais').style.width = Math.min((m/21)*100, 100) + '%'; }
+        function resetProgress() { localStorage.setItem('prog_bible', 0); localStorage.setItem('prog_materiais', 0); updateProgressUI(); }
+        
+        const container = document.getElementById('radioContainer'); let isDragging = false; let offsetX, offsetY;
+        container.addEventListener('touchstart', (e) => { isDragging = true; const rect = container.getBoundingClientRect(); offsetX = e.touches[0].clientX - rect.left; offsetY = e.touches[0].clientY - rect.top; }, {passive: false});
+        document.addEventListener('touchmove', (e) => { if (!isDragging) return; e.preventDefault(); container.style.left = (e.touches[0].clientX - offsetX) + 'px'; container.style.top = (e.touches[0].clientY - offsetY) + 'px'; container.style.right = 'auto'; container.style.bottom = 'auto'; container.style.position = 'fixed'; }, {passive: false});
+        document.addEventListener('touchend', () => { isDragging = false; });
 
-        // MODO CLARO
+        function enableDragButton(el) { let isDragging = false; let offsetX, offsetY; el.addEventListener('touchstart', (e) => { isDragging = true; const rect = el.getBoundingClientRect(); offsetX = e.touches[0].clientX - rect.left; offsetY = e.touches[0].clientY - rect.top; }, {passive: false}); document.addEventListener('touchmove', (e) => { if (!isDragging) return; e.preventDefault(); el.style.left = (e.touches[0].clientX - offsetX) + 'px'; el.style.top = (e.touches[0].clientY - offsetY) + 'px'; el.style.right = 'auto'; el.style.bottom = 'auto'; }, {passive: false}); document.addEventListener('touchend', () => { isDragging = false; }); }
+        enableDragButton(document.getElementById('btnRadio')); enableDragButton(document.querySelector('.btn-apk-home'));
+        function toggleRadio() { var container = document.getElementById('radioContainer'); if (container.style.display === 'none') { container.style.display = 'block'; container.style.width = '90%'; container.style.height = '250px'; document.getElementById('radioIframe').src = "https://www.youtube.com/embed/ful0qGqtSgQ?autoplay=1"; document.getElementById('btnRadio').innerHTML = '⏹️<br>PARAR'; } else { closeRadio(); } }
+        function minimizeRadio() { document.getElementById('radioContainer').style.width = '120px'; document.getElementById('radioContainer').style.height = '80px'; }
+        function closeRadio() { document.getElementById('radioContainer').style.display = 'none'; document.getElementById('radioIframe').src = ""; document.getElementById('btnRadio').innerHTML = '▶️<br>RÁDIO<br>GOSPEL'; }
+        function loadPDF(id) { let container = document.getElementById('pdf-viewer-container'); container.style.display = 'flex'; container.style.position = 'fixed'; container.style.top = '0'; container.style.left = '0'; container.style.width = '100%'; container.style.height = '100%'; document.getElementById('iframe-pdf').src = "https://docs.google.com/viewer?embedded=true&url=https://drive.google.com/uc?id=" + id; document.getElementById('pdf-menu').style.display = 'none'; document.getElementById('folder-historia').style.display = 'none'; document.getElementById('folder-sermoes').style.display = 'none'; document.getElementById('folder-apologetica').style.display = 'none'; document.getElementById('folder-geografia').style.display = 'none'; }
+        function closePDF() { document.getElementById('pdf-viewer-container').style.display = 'none'; document.getElementById('iframe-pdf').src = ""; document.getElementById('pdf-menu').style.display = 'block'; }
+        function switchView(id, btn) { document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById('view-' + id).classList.add('active'); if(btn) btn.classList.add('active'); if(id === 'leitura') showBibleHint(); }
+        function openEscala(id) { switchView('materiais', document.querySelectorAll('.tab-btn')[3]); loadPDF(id); }
         function toggleLightMode() { document.body.classList.toggle('light-mode-active'); }
-
-        function execCmd(cmd) { document.execCommand(cmd, false, null); updateStyleState(); }
-        function updateStyleState() { /* Lógica de botões ativos */ }
-
-        // AGENDA
-        function saveAgenda() {
-            const d = document.getElementById('agenda-date').value; const t = document.getElementById('agenda-text').value;
-            const file = document.getElementById('agenda-file').files[0];
-            const id = document.getElementById('agenda-id').value || 'rcid_agenda_' + new Date().getTime();
-            if(!d || !t) return;
-            if(file) {
-                const r = new FileReader();
-                r.onload = function(e) { localStorage.setItem(id, JSON.stringify({date:d, text:t, img:e.target.result, done:false})); finishAgenda(); };
-                r.readAsDataURL(file);
-            } else { localStorage.setItem(id, JSON.stringify({date:d, text:t, img:null, done:false})); finishAgenda(); }
+        function execCmd(cmd, val = null) { document.execCommand('styleWithCSS', false, true); document.execCommand(cmd, false, val); updateStyleState(); document.getElementById('sermon-editor').focus(); }
+        function updateStyleState() { 
+            document.querySelectorAll('.tool-btn').forEach(btn => { const cmd = btn.getAttribute('data-cmd'); if (document.queryCommandState(cmd)) btn.classList.add('active'); else btn.classList.remove('active'); }); 
+            const val = document.queryCommandValue('fontSize');
+            if(val) document.getElementById('fontSizeSelect').value = val;
         }
+        function saveAgenda() { const d = document.getElementById('agenda-date').value; const t = document.getElementById('agenda-text').value; const file = document.getElementById('agenda-file').files[0]; const id = document.getElementById('agenda-id').value || 'rcid_agenda_' + new Date().getTime(); if(!d || !t) return; if(file) { const r = new FileReader(); r.onload = function(e) { localStorage.setItem(id, JSON.stringify({date:d, text:t, img:e.target.result, done:false})); finishAgenda(); }; r.readAsDataURL(file); } else { localStorage.setItem(id, JSON.stringify({date:d, text:t, img:null, done:false})); finishAgenda(); } }
         function finishAgenda() { document.getElementById('agenda-date').value=""; document.getElementById('agenda-text').value=""; document.getElementById('agenda-file').value=""; document.getElementById('agenda-id').value=""; loadAgenda(); updateHomeNotif(); }
-        function loadAgenda() {
-            const list = document.getElementById('agenda-list'); list.innerHTML = ""; let items = [];
-            for (let i=0; i<localStorage.length; i++) {
-                const k = localStorage.key(i); if(k.startsWith('rcid_agenda_')) items.push({k, ...JSON.parse(localStorage.getItem(k))});
-            }
-            items.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(it => {
-                const card = document.createElement('div'); card.className = 'item-list-card' + (it.done ? ' agenda-done' : '');
-                let img = it.img ? `<img src="${it.img}" style="width:100%; border-radius:10px; margin-top:10px;">` : '';
-                card.innerHTML = `<div><strong>${it.date.split('-').reverse().join('/')}</strong><br>${it.text}</div>${img}
-                <div style="display:flex; gap:8px; margin-top:10px;">
-                    <button onclick="toggleAgenda('${it.k}')" style="background:#28a745; border:none; padding:10px; border-radius:8px; color:white;">✓</button>
-                    <button onclick="editAgenda('${it.k}')" style="background:#009ee3; border:none; padding:10px; border-radius:8px; color:white;">✎</button>
-                    <button onclick="deleteAgenda('${it.k}')" style="background:red; border:none; padding:10px; border-radius:8px; color:white;">X</button>
-                </div>`;
-                list.appendChild(card);
-            });
-        }
+        function loadAgenda() { const list = document.getElementById('agenda-list'); list.innerHTML = ""; let items = []; for (let i=0; i<localStorage.length; i++) { const k = localStorage.key(i); if(k.startsWith('rcid_agenda_')) items.push({k, ...JSON.parse(localStorage.getItem(k))}); } items.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(it => { const card = document.createElement('div'); card.className = 'item-list-card' + (it.done ? ' agenda-done' : ''); let img = it.img ? `<img src="${it.img}" style="width:100%; border-radius:10px; margin-top:10px;">` : ''; card.innerHTML = `<div><strong>${it.date.split('-').reverse().join('/')}</strong><br>${it.text}</div>${img} <div style="display:flex; gap:8px; margin-top:10px;"> <button onclick="toggleAgenda('${it.k}')" style="background:#28a745; border:none; padding:10px; border-radius:8px; color:white;">✓</button> <button onclick="editAgenda('${it.k}')" style="background:#009ee3; border:none; padding:10px; border-radius:8px; color:white;">✎</button> <button onclick="deleteAgenda('${it.k}')" style="background:red; border:none; padding:10px; border-radius:8px; color:white;">X</button> </div>`; list.appendChild(card); }); }
         function toggleAgenda(k) { let d=JSON.parse(localStorage.getItem(k)); d.done=!d.done; localStorage.setItem(k, JSON.stringify(d)); loadAgenda(); updateHomeNotif(); }
         function editAgenda(k) { let d=JSON.parse(localStorage.getItem(k)); document.getElementById('agenda-date').value=d.date; document.getElementById('agenda-text').value=d.text; document.getElementById('agenda-id').value=k; window.scrollTo(0,0); }
         function deleteAgenda(k) { if(confirm("Apagar?")) { localStorage.removeItem(k); loadAgenda(); updateHomeNotif(); } }
-
-        function updateHomeNotif() {
-            const cont = document.getElementById('notif-content'); let items = [];
-            for (let i=0; i<localStorage.length; i++) {
-                const k = localStorage.key(i); if(k.startsWith('rcid_agenda_')) { let d=JSON.parse(localStorage.getItem(k)); if(!d.done) items.push(d); }
-            }
-            if(items.length > 0) {
-                items.sort((a,b) => new Date(a.date) - new Date(b.date));
-                cont.innerHTML = `📌 <b>${items[0].date.split('-').reverse().join('/')}</b>: ${items[0].text}`;
-            } else { cont.innerHTML = "Tudo em dia!"; }
-        }
-
-        // ESBOÇOS
-        function saveSermon() {
-            const t = document.getElementById('sermon-title').value; const c = document.getElementById('sermon-editor').innerHTML;
-            if(!t || c==="") return;
-            localStorage.setItem('rcid_sermon_'+t, JSON.stringify({title:t, content:c}));
-            clearEditor(); loadSermons(); alert("Salvo!");
-        }
+        function updateHomeNotif() { const cont = document.getElementById('home-notif-content'); if(!cont) return; let items = []; for (let i=0; i<localStorage.length; i++) { const k = localStorage.key(i); if(k.startsWith('rcid_agenda_')) { let d=JSON.parse(localStorage.getItem(k)); if(!d.done) items.push(d); } } if(items.length > 0) { items.sort((a,b) => new Date(a.date) - new Date(b.date)); cont.innerHTML = `📌 <b>${items[0].date.split('-').reverse().join('/')}</b>: ${items[0].text}`; } else { cont.innerHTML = "Tudo em dia!"; } }
+        function saveSermon() { const t = document.getElementById('sermon-title').value; const c = document.getElementById('sermon-editor').innerHTML; if(!t || c==="") return; localStorage.setItem('rcid_sermon_'+t, JSON.stringify({title:t, content:c})); clearEditor(); loadSermons(); alert("Salvo!"); }
         function clearEditor() { document.getElementById('sermon-title').value=""; document.getElementById('sermon-editor').innerHTML=""; }
-        function loadSermons() {
-            const list = document.getElementById('saved-list'); list.innerHTML = "";
-            for (let i=0; i<localStorage.length; i++) {
-                const k = localStorage.key(i); if(k.startsWith('rcid_sermon_')) {
-                    const d = JSON.parse(localStorage.getItem(k)); const it = document.createElement('div'); it.className = 'card';
-                    it.innerHTML = `<strong>${d.title}</strong><div style="display:flex; gap:10px; margin-top:15px;">
-                        <button class="action-btn" style="flex:2;" onclick="openReader('${k}')">📖 LER</button>
-                        <button class="action-btn" style="flex:1; background:#009ee3; color:white;" onclick="editSermon('${k}')">✍️ EDIT</button>
-                        <button class="action-btn" style="flex:1; background:red; color:white;" onclick="deleteSermon('${k}')">X</button>
-                    </div>`;
-                    list.appendChild(it);
-                }
-            }
-        }
+        function loadSermons() { const list = document.getElementById('saved-list'); list.innerHTML = ""; for (let i=0; i<localStorage.length; i++) { const k = localStorage.key(i); if(k.startsWith('rcid_sermon_')) { const d = JSON.parse(localStorage.getItem(k)); const it = document.createElement('div'); it.className = 'card'; it.innerHTML = `<strong>${d.title}</strong><div style="display:flex; gap:10px; margin-top:15px;"> <button class="action-btn" style="flex:2;" onclick="openReader('${k}')">📖 LER</button> <button class="action-btn" style="flex:1; background:#009ee3; color:white;" onclick="editSermon('${k}')">✍️ EDIT</button> <button class="action-btn" style="flex:1; background:red; color:white;" onclick="deleteSermon('${k}')">X</button> </div>`; list.appendChild(it); } } }
         function openReader(k) { let d=JSON.parse(localStorage.getItem(k)); document.getElementById('reader-title').innerText=d.title; document.getElementById('reader-content').innerHTML=d.content; document.getElementById('reader-overlay').style.display='flex'; }
         function closeReader() { document.getElementById('reader-overlay').style.display='none'; document.body.classList.remove('light-mode-active'); }
         function editSermon(k) { let d=JSON.parse(localStorage.getItem(k)); document.getElementById('sermon-title').value=d.title; document.getElementById('sermon-editor').innerHTML=d.content; switchView('esboços', document.querySelectorAll('.tab-btn')[2]); window.scrollTo(0,0); }
         function deleteSermon(k) { if(confirm("Apagar?")) { localStorage.removeItem(k); loadSermons(); } }
-
-        function loadPDF(id) { document.getElementById('iframe-pdf').src = "https://docs.google.com/viewer?embedded=true&url=https://drive.google.com/uc?id=" + id; document.getElementById('pdf-menu').style.display='none'; document.getElementById('pdf-viewer-container').style.display='flex'; }
-        function closePDF() { document.getElementById('iframe-pdf').src = ""; document.getElementById('pdf-menu').style.display='block'; document.getElementById('pdf-viewer-container').style.display='none'; }
-
-        window.onload = function() { loadSermons(); loadAgenda(); updateHomeNotif(); };
+        
+        window.onload = function() { 
+            loadSermons(); loadAgenda(); updateHomeNotif(); updateProgressUI(); 
+            let openCount = parseInt(localStorage.getItem('rcid_open_count') || 0);
+            openCount++;
+            localStorage.setItem('rcid_open_count', openCount);
+            if(openCount % 3 === 0) { 
+                setTimeout(() => { 
+                    document.getElementById('offer-modal').style.display = 'flex'; 
+                    setTimeout(() => { document.getElementById('close-offer-btn').style.display = 'block'; }, 5000);
+                }, 1000);
+            }
+        };
     </script>
 </body>
 </html>
