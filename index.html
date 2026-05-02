@@ -127,7 +127,7 @@
         <section id="view-escala" class="view-section">
             <div class="card" style="text-align: center;">
                 <h3 style="color:var(--gold);">Escalas</h3>
-                <button class="action-btn" style="background:rgba(255,255,255,0.1); color:var(--gold-light); margin-top: 20px;" onclick="openEscala('1ykEToGrC5oM_TBI3_PkvNXU_A-_iF4I6')">📅 ABRIR ESCALA</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.1); color:var(--gold-light); margin-top: 20px;" onclick="openEscala('1OD1PROSo1gp1jgss20bQr2KcVSMyWhg9')">📅 ABRIR ESCALA</button>
             </div>
         </section>
 
@@ -184,8 +184,12 @@
                     <button class="action-btn" style="margin-bottom:10px;" onclick="showFolder('folder-sermoes')">📁 Como fazer sermões</button>
                     <button class="action-btn" style="margin-bottom:10px;" onclick="showFolder('folder-apologetica')">📁 Apologética Teológica</button>
                     <button class="action-btn" style="margin-bottom:10px;" onclick="showFolder('folder-geografia')">📁 Geografia Bíblica</button>
+                    <button class="action-btn" style="margin-bottom:10px;" onclick="showFolder('folder-segredos')">📁 50 segredos da Bíblia</button>
+                    <button class="action-btn" style="margin-bottom:10px;" onclick="showFolder('folder-voce-entendeu-errado')">📁 Você entendeu errado</button>
+                    <button class="action-btn" style="margin-bottom:10px;" onclick="showFolder('folder-apologetica-crista')">📁 Curso de Apologética Cristã</button>
                 </div>
             </div>
+            
             <div id="folder-historia" style="display:none;">
                 <button class="action-btn" style="background:#333; color:white; margin-bottom:10px;" onclick="showFolder('pdf-menu')">⬅️ Voltar</button>
                 <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1ukE1_cJNNSKFI4VBiwCdLesm6oRT3weu')">📖 Vol. 1</button>
@@ -210,9 +214,44 @@
                 <button class="action-btn" style="background:#333; color:white; margin-bottom:10px;" onclick="showFolder('pdf-menu')">⬅️ Voltar</button>
                 <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1j7Q-LS22Rxhw7-28UlaYdj8r2BS-Myb0')">🌍 Geografia Bíblica</button>
             </div>
-            <div id="pdf-viewer-container" style="display:none; flex-direction:column; z-index:999999999; background:#000;">
-                <button class="action-btn" style="background:red; color:white; margin-bottom:10px;" onclick="closePDF()">❌ FECHAR LEITURA</button>
-                <iframe id="iframe-pdf" style="width:100%; height:100vh; border:none; background:white;"></iframe>
+            <div id="folder-segredos" style="display:none;">
+                <button class="action-btn" style="background:#333; color:white; margin-bottom:10px;" onclick="showFolder('pdf-menu')">⬅️ Voltar</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('19TnWI0BKNgF8vf3-kPigPMWtepp4zdWt')">📖 Vol. 1</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('10vQpTU5SXQOG9pyRAaeR_3fF_2qKKwzH')">📖 Vol. 2</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1oMZwxayk_ls10ubZNMPsK2UwHtTdPhDm')">📖 Vol. 3</button>
+            </div>
+            <div id="folder-voce-entendeu-errado" style="display:none;">
+                <button class="action-btn" style="background:#333; color:white; margin-bottom:10px;" onclick="showFolder('pdf-menu')">⬅️ Voltar</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1PMq8YZlvQOjm2FQvgltBwEArwI2jc-hO')">📖 Vol. 1</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1MpFEIWGQpbFtf_soQSZ1zw3xQgT7dUrJ')">📖 Vol. 2</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1dA8EeYE_G6gFW2QY1qvWi82zX8gTBcy1')">📖 Vol. 3</button>
+            </div>
+            <div id="folder-apologetica-crista" style="display:none;">
+                <button class="action-btn" style="background:#333; color:white; margin-bottom:10px;" onclick="showFolder('pdf-menu')">⬅️ Voltar</button>
+                <button class="action-btn" style="background:rgba(255,255,255,0.05); color:var(--gold-light); text-align:left; margin-bottom:5px;" onclick="trackProgress('materiais'); loadPDF('1bgOOf9Ejr8qLeSqSdEJfdjNUV8wTAN8b')">📖 Apologética Cristã</button>
+            </div>
+            
+            <div id="pdf-viewer-container" style="display:none; flex-direction:column; z-index:999999999; background:#000; position:fixed; top:0; left:0; width:100%; height:100%;">
+                <div style="display:flex; gap:5px; padding:10px; background:#111;">
+                    <button class="action-btn" style="background:red; color:white; flex:1;" onclick="closePDF()">❌ FECHAR</button>
+                    <button class="action-btn" style="background:var(--gold); color:#000; flex:1;" onclick="openPdfNotesModal()">📝 MINHAS ANOTAÇÕES</button>
+                </div>
+                <iframe id="iframe-pdf" style="width:100%; height:100%; border:none; background:white;"></iframe>
+            </div>
+
+            <div id="pdf-notes-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999999999; flex-direction:column; padding:20px; overflow-y:auto;">
+                <h3 style="color:var(--gold); margin-bottom:10px; text-align:center;">✏️ Minhas Anotações</h3>
+                
+                <input type="text" id="pdf-note-title" placeholder="Título da Anotação" style="width:100%; padding:10px; border-radius:10px; background:#222; color:white; border:1px solid var(--gold); margin-bottom:10px;">
+                <textarea id="pdf-note-text" style="width:100%; height:150px; background:#15161a; color:white; border:1px solid var(--gold); padding:15px; border-radius:15px; resize:none; font-size: 14px;" placeholder="Cole ou digite aqui..."></textarea>
+                
+                <div style="display:flex; gap:10px; margin-top:10px; margin-bottom:20px;">
+                    <button class="action-btn" style="background:green; color:white;" onclick="savePdfNote()">💾 SALVAR NOTA</button>
+                    <button class="action-btn" style="background:#444; color:white;" onclick="document.getElementById('pdf-notes-modal').style.display='none'">⬅️ VOLTAR AO PDF</button>
+                </div>
+
+                <div id="pdf-notes-list" style="width:100%; border-top:1px solid #444; padding-top:15px;">
+                    </div>
             </div>
         </section>
     </main>
@@ -227,12 +266,12 @@
     </div>
 
     <script>
+        let currentPdfId = "";
+
         function showBibleHint() { const hint = document.getElementById('bible-hint'); hint.style.display = 'flex'; setTimeout(closeBibleHint, 3000); }
         function closeBibleHint() { document.getElementById('bible-hint').style.display = 'none'; }
-        
         function closeOfferModal() { document.getElementById('offer-modal').style.display = 'none'; }
-        
-        function showFolder(id) { document.getElementById('pdf-menu').style.display = 'none'; document.getElementById('folder-historia').style.display = 'none'; document.getElementById('folder-sermoes').style.display = 'none'; document.getElementById('folder-apologetica').style.display = 'none'; document.getElementById('folder-geografia').style.display = 'none'; if(id === 'pdf-menu') { document.getElementById('pdf-menu').style.display = 'block'; } else { document.getElementById(id).style.display = 'block'; } }
+        function showFolder(id) { document.getElementById('pdf-menu').style.display = 'none'; document.getElementById('folder-historia').style.display = 'none'; document.getElementById('folder-sermoes').style.display = 'none'; document.getElementById('folder-apologetica').style.display = 'none'; document.getElementById('folder-geografia').style.display = 'none'; document.getElementById('folder-segredos').style.display = 'none'; document.getElementById('folder-voce-entendeu-errado').style.display = 'none'; document.getElementById('folder-apologetica-crista').style.display = 'none'; if(id === 'pdf-menu') { document.getElementById('pdf-menu').style.display = 'block'; } else { document.getElementById(id).style.display = 'block'; } }
         
         function trackProgress(type) { let count = parseInt(localStorage.getItem('prog_'+type) || 0); localStorage.setItem('prog_'+type, count + 1); updateProgressUI(); }
         function updateProgressUI() { let b = parseInt(localStorage.getItem('prog_bible') || 0); let m = parseInt(localStorage.getItem('prog_materiais') || 0); document.getElementById('prog-bible').style.width = Math.min((b/21)*100, 100) + '%'; document.getElementById('prog-materiais').style.width = Math.min((m/21)*100, 100) + '%'; }
@@ -248,8 +287,74 @@
         function toggleRadio() { var container = document.getElementById('radioContainer'); if (container.style.display === 'none') { container.style.display = 'block'; container.style.width = '90%'; container.style.height = '250px'; document.getElementById('radioIframe').src = "https://www.youtube.com/embed/ful0qGqtSgQ?autoplay=1"; document.getElementById('btnRadio').innerHTML = '⏹️<br>PARAR'; } else { closeRadio(); } }
         function minimizeRadio() { document.getElementById('radioContainer').style.width = '120px'; document.getElementById('radioContainer').style.height = '80px'; }
         function closeRadio() { document.getElementById('radioContainer').style.display = 'none'; document.getElementById('radioIframe').src = ""; document.getElementById('btnRadio').innerHTML = '▶️<br>RÁDIO<br>GOSPEL'; }
-        function loadPDF(id) { let container = document.getElementById('pdf-viewer-container'); container.style.display = 'flex'; container.style.position = 'fixed'; container.style.top = '0'; container.style.left = '0'; container.style.width = '100%'; container.style.height = '100%'; document.getElementById('iframe-pdf').src = "https://docs.google.com/viewer?embedded=true&url=https://drive.google.com/uc?id=" + id; document.getElementById('pdf-menu').style.display = 'none'; document.getElementById('folder-historia').style.display = 'none'; document.getElementById('folder-sermoes').style.display = 'none'; document.getElementById('folder-apologetica').style.display = 'none'; document.getElementById('folder-geografia').style.display = 'none'; }
+        
+        // --- GERENCIADOR DE NOTAS ---
+        function openPdfNotesModal() { 
+            document.getElementById('pdf-notes-modal').style.display = 'flex'; 
+            loadPdfNotesList(); 
+        }
+
+        function savePdfNote() {
+            const title = document.getElementById('pdf-note-title').value;
+            const content = document.getElementById('pdf-note-text').value;
+            const noteId = document.getElementById('agenda-id').value || 'rcid_pdfnote_' + new Date().getTime();
+            if(!title || !content) return;
+            localStorage.setItem(noteId, JSON.stringify({title, content, pdfId: currentPdfId}));
+            document.getElementById('pdf-note-title').value = "";
+            document.getElementById('pdf-note-text').value = "";
+            document.getElementById('agenda-id').value = "";
+            loadPdfNotesList();
+        }
+
+        function loadPdfNotesList() {
+            const list = document.getElementById('pdf-notes-list');
+            list.innerHTML = "";
+            for (let i = 0; i < localStorage.length; i++) {
+                const k = localStorage.key(i);
+                if (k.startsWith('rcid_pdfnote_')) {
+                    const note = JSON.parse(localStorage.getItem(k));
+                    if (note.pdfId === currentPdfId) {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        card.innerHTML = `<strong>${note.title}</strong><div style="display:flex; gap:5px; margin-top:10px;">
+                            <button class="action-btn" style="flex:1;" onclick="readPdfNote('${k}')">LER</button>
+                            <button class="action-btn" style="flex:1; background:#009ee3; color:white;" onclick="editPdfNote('${k}')">EDIT</button>
+                            <button class="action-btn" style="flex:1; background:red; color:white;" onclick="deletePdfNote('${k}')">X</button>
+                        </div>`;
+                        list.appendChild(card);
+                    }
+                }
+            }
+        }
+
+        function readPdfNote(k) {
+            const note = JSON.parse(localStorage.getItem(k));
+            document.getElementById('reader-title').innerText = note.title;
+            document.getElementById('reader-content').innerHTML = note.content;
+            document.getElementById('reader-overlay').style.display = 'flex';
+        }
+
+        function editPdfNote(k) {
+            const note = JSON.parse(localStorage.getItem(k));
+            document.getElementById('pdf-note-title').value = note.title;
+            document.getElementById('pdf-note-text').value = note.content;
+            document.getElementById('agenda-id').value = k;
+        }
+
+        function deletePdfNote(k) {
+            if(confirm("Apagar nota?")) { localStorage.removeItem(k); loadPdfNotesList(); }
+        }
+
+        function loadPDF(id) { 
+            currentPdfId = id;
+            let container = document.getElementById('pdf-viewer-container'); 
+            container.style.display = 'flex'; 
+            document.getElementById('iframe-pdf').src = "https://docs.google.com/viewer?embedded=true&url=https://drive.google.com/uc?id=" + id; 
+            document.getElementById('pdf-menu').style.display = 'none'; 
+            document.getElementById('folder-historia').style.display = 'none'; document.getElementById('folder-sermoes').style.display = 'none'; document.getElementById('folder-apologetica').style.display = 'none'; document.getElementById('folder-geografia').style.display = 'none'; document.getElementById('folder-segredos').style.display = 'none'; document.getElementById('folder-voce-entendeu-errado').style.display = 'none'; document.getElementById('folder-apologetica-crista').style.display = 'none';
+        }
         function closePDF() { document.getElementById('pdf-viewer-container').style.display = 'none'; document.getElementById('iframe-pdf').src = ""; document.getElementById('pdf-menu').style.display = 'block'; }
+        
         function switchView(id, btn) { document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById('view-' + id).classList.add('active'); if(btn) btn.classList.add('active'); if(id === 'leitura') showBibleHint(); }
         function openEscala(id) { switchView('materiais', document.querySelectorAll('.tab-btn')[3]); loadPDF(id); }
         function toggleLightMode() { document.body.classList.toggle('light-mode-active'); }
